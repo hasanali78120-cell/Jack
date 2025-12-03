@@ -40,90 +40,25 @@
             -ms-user-select: none;
         }
 
-        /* --- BACKGROUND STYLES (NEW) --- */
         body {
-            background-color: #050505;
+            background-color: var(--bg-dark);
             color: var(--text-main);
             min-height: 100vh;
             display: flex; justify-content: center;
-            overflow-x: hidden;
-            position: relative; /* گرنگە بۆ باکگراوندەکە */
-        }
-
-        /* بەشی جوڵەی ڕەنگەکان */
-        .background-wrapper {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            z-index: -2;
-            overflow: hidden;
-            background: #050505;
-        }
-
-        .blob {
-            position: absolute;
-            border-radius: 50%;
-            filter: blur(80px); /* تەڵخکردنی ڕەنگەکان */
-            opacity: 0.5;
-            animation: floatBlob 10s infinite alternate cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        /* تۆپەڵەی شین */
-        .blob-1 {
-            width: 350px; height: 350px;
-            background: var(--blue);
-            top: -10%; left: -10%;
-            animation-delay: 0s;
-        }
-
-        /* تۆپەڵەی زەرد */
-        .blob-2 {
-            width: 300px; height: 300px;
-            background: var(--yellow);
-            bottom: -10%; right: -10%;
-            animation-delay: -5s;
-        }
-
-        /* تۆپەڵەی ناوەڕاست (تێکەڵ) */
-        .blob-3 {
-            width: 250px; height: 250px;
-            background: #0000aa;
-            top: 40%; left: 30%;
-            opacity: 0.3;
-            animation-duration: 15s;
-        }
-
-        @keyframes floatBlob {
-            0% { transform: translate(0, 0) scale(1); }
-            100% { transform: translate(30px, 50px) scale(1.1); }
-        }
-
-        /* تۆڕی ئەندازیاری (Grid) */
-        .grid-overlay {
-            position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            z-index: -1;
             background-image: 
-                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-            background-size: 40px 40px;
-            pointer-events: none;
+                radial-gradient(circle at 10% 20%, rgba(0, 0, 254, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 90% 80%, rgba(254, 255, 0, 0.1) 0%, transparent 40%);
+            overflow-x: hidden;
         }
 
-        /* --- APP CONTAINER --- */
         .app-container {
             width: 100%;
             max-width: 480px;
-            /* باکگراوند شەفافتر کراوە بۆ دەرکەوتنی جوڵەکە */
-            background: rgba(10, 10, 10, 0.3); 
-            backdrop-filter: blur(2px); /* بلێری کەم بۆ جیاکردنەوە */
+            background: rgba(0,0,0,0.2);
             min-height: 100vh;
             position: relative;
             padding-bottom: 90px;
             box-shadow: 0 0 50px rgba(0,0,0,0.5);
-            border-left: 1px solid rgba(255,255,255,0.05);
-            border-right: 1px solid rgba(255,255,255,0.05);
         }
 
         /* --- LOGO STYLE (MAIN HEADER) --- */
@@ -259,7 +194,7 @@
         /* --- Header & Status --- */
         .header {
             padding: 15px 20px; display: flex; justify-content: space-between; align-items: center;
-            background: rgba(15, 15, 20, 0.8); backdrop-filter: blur(15px);
+            background: rgba(15, 15, 20, 0.9); backdrop-filter: blur(10px);
             position: sticky; top: 0; z-index: 100; border-bottom: 1px solid var(--border);
             direction: rtl;
         }
@@ -548,7 +483,6 @@
             background: var(--glass); border: 1px solid var(--border); padding: 20px;
             border-radius: 20px; text-align: center; transition: 0.3s; cursor: pointer;
             display: flex; flex-direction: column; align-items: center; gap: 10px;
-            backdrop-filter: blur(5px);
         }
         .grid-item:active { transform: scale(0.95); background: rgba(0, 0, 254, 0.1); }
         .grid-icon { font-size: 1.8rem; color: var(--yellow); margin-bottom: 5px; }
@@ -597,7 +531,6 @@
             position: relative; height: 160px; margin: 0 20px 30px 20px;
             background: linear-gradient(135deg, rgba(255,255,255,0.05), rgba(255,255,255,0.02));
             border-radius: 20px; border: 1px solid var(--border); padding: 20px;
-            backdrop-filter: blur(5px);
         }
         .review-slide {
             position: absolute; top: 0; left: 0; width: 100%; height: 100%;
@@ -691,7 +624,7 @@
         /* --- Floating Action Bar --- */
         .fab-container {
             position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
-            background: rgba(20, 20, 20, 0.8); backdrop-filter: blur(15px);
+            background: rgba(20, 20, 20, 0.9); backdrop-filter: blur(15px);
             padding: 10px 25px; border-radius: 50px; border: 1px solid rgba(254, 255, 0, 0.2);
             display: flex; gap: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); z-index: 900;
         }
@@ -895,13 +828,6 @@
     </style>
 </head>
 <body>
-
-    <div class="background-wrapper">
-        <div class="blob blob-1"></div>
-        <div class="blob blob-2"></div>
-        <div class="blob blob-3"></div>
-    </div>
-    <div class="grid-overlay"></div>
 
     <canvas id="confetti"></canvas>
     <audio id="bgMusic" loop><source src="ivan.mp3" type="audio/mpeg"></audio>
